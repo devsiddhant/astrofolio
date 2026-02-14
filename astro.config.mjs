@@ -1,12 +1,12 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import astroIcon from 'astro-icon';
-import mdx from '@astrojs/mdx';
+import astroIcon from "astro-icon";
+import mdx from "@astrojs/mdx";
 import playformCompress from "@playform/compress";
-import vercel from "@astrojs/vercel";
+import cloudflarePages from "@astrojs/cloudflare-pages";
 
-// https://astro.build/config
+/** @type {import('astro').AstroUserConfig} */
 export default defineConfig({
   integrations: [
     tailwind(),
@@ -14,8 +14,8 @@ export default defineConfig({
     astroIcon({
       include: {
         mdi: ["*"],
-        ri: ['*'],
-        'simple-icons': ['*'],
+        ri: ["*"],
+        "simple-icons": ["*"],
       },
     }),
     playformCompress({
@@ -24,12 +24,11 @@ export default defineConfig({
       Action: {
         Passed: async () => true,
       },
-    })
+    }),
   ],
-  output: 'server',
-  adapter: vercel(),
+  output: "static", // static HTML output
+  adapter: cloudflarePages(), // works on Cloudflare Pages
   devToolbar: {
-    enabled: false
-  }
-
+    enabled: false,
+  },
 });
