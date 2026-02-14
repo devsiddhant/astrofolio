@@ -22,11 +22,14 @@ export default defineConfig({
       CSS: false,
       Image: false,
       Action: {
-        Passed: async () => true,  
+        Passed: async () => true,
       },
     })
   ],
   output: 'server',
   adapter: vercel(),
-  
+  devToolbar: {
+    enabled: false
+  }
+
 });

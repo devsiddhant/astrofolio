@@ -72,4 +72,8 @@ module.exports = {
     scrollbar,
     require('tailwind-scrollbar-hide'),
   ],
+  daisyui: {
+    themes: false, // Disable default themes to prevent bloat
+    logs: false,   // Disable logs
+  },
 };

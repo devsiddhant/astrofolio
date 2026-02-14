@@ -21,18 +21,6 @@ import { Icon } from 'astro-icon/components'
         <Icon name='ri:sun-fill' class='dark:hidden' width={28} height={28} />
       </i>
     </button>
-    <select
-      data-ccursor
-      id='themeSelect'
-      class='block w-full rounded-md border-0 bg-transparent py-1.5 pl-3 pr-10 ring-1 ring-inset ring-skin-muted focus:ring-2 focus:ring-skin-hue sm:text-sm sm:leading-6 text-skin-hue hover:cursor-none'>
-      <option value='red'>Red</option>
-      <option value='orange'>Orange</option>
-      <option value='cyber'>Cyberpunk</option>
-      <option value='green'>Green</option>
-      <option value='blue'>Blue</option>
-      <option value="platinum">Platinum</option>
-      <option value="sunset">Sunset</option>
-    </select>
   </div>
 </div>
 
@@ -101,23 +89,11 @@ import { Icon } from 'astro-icon/components'
 
   function updateDataTheme(value: string) {
     document.body.setAttribute('data-theme', value)
-    localStorage.setItem('data-theme', value)
   }
 
   const themeSwitchButton = document.getElementById('themeSwitch')
   if (themeSwitchButton) {
     themeSwitchButton.addEventListener('click', toggleDark)
-  }
-
-  const themeSelect = document.getElementById(
-    'themeSelect'
-  ) as HTMLSelectElement
-
-  if (themeSelect) {
-    themeSelect.addEventListener('change', e => {
-      const selectedTheme = (e.target as HTMLSelectElement).value
-      updateDataTheme(selectedTheme)
-    })
   }
 
   // Initialize theme based on user preference or system setting
@@ -130,16 +106,8 @@ import { Icon } from 'astro-icon/components'
     updateTheme()
   }
 
-  // Initialize data-theme based on stored value or default
-  const storedDataTheme =
-    localStorage.getItem('data-theme') ||
-    document.body.getAttribute('data-theme')!
-
-  updateDataTheme(storedDataTheme)
-
-  if (themeSelect) {
-    themeSelect.value = storedDataTheme
-  }
+  // Always use platinum theme
+  updateDataTheme('platinum')
 
   // Listen for changes in system color scheme
   window
