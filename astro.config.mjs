@@ -4,9 +4,8 @@ import tailwind from "@astrojs/tailwind";
 import astroIcon from "astro-icon";
 import mdx from "@astrojs/mdx";
 import playformCompress from "@playform/compress";
-import cloudflarePages from "@astrojs/cloudflare-pages";
 
-/** @type {import('astro').AstroUserConfig} */
+// https://astro.build/config
 export default defineConfig({
   integrations: [
     tailwind(),
@@ -26,9 +25,6 @@ export default defineConfig({
       },
     }),
   ],
-  output: "static", // static HTML output
-  adapter: cloudflarePages(), // works on Cloudflare Pages
-  devToolbar: {
-    enabled: false,
-  },
+  output: "static", // <-- important
+  devToolbar: { enabled: false },
 });
